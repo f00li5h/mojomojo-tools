@@ -1,0 +1,15 @@
+:
+### BEGIN INIT INFO
+# Provides:          mojomojo
+# Required-Start:    $remote_fs $syslog $time
+# Required-Stop:     $remote_fs $syslog $time
+# Should-Start:      
+# Should-Stop:       $named 
+# Default-Start:     2 3 4 5
+# Default-Stop:
+# Short-Description: wiki-thing
+# Description:       wiki-thing
+### END INIT INFO
+
+# cd /opt/mojomojo
+su - mojomojo -c "cd /opt/mojomojo; MOJOMOJO_CONFIG=./MojoMojo.conf ./fcgi_manage.pl $*"

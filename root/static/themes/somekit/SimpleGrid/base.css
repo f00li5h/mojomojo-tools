@@ -1,0 +1,154 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	color: #444;
+	font-family: Georgia, serif;
+	line-height: 1.25em;
+}
+ol, ul {
+	list-style: square;
+	margin: 0 0 0.5em;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+code {
+	background-color: #f4f4f4;
+	font-family: Menlo, 'Panic Sans', monospace;
+	font-size: 0.875em;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+strong {
+	font-weight: bold;
+}
+p {
+	margin: 0 0 0.5em;
+	max-width: 634px;
+}
+
+h1 {
+	font-size: 3em;
+}
+
+h2 {
+	font-size: 2em;
+}
+
+h3 {
+	font-size: 1.5em;
+}
+
+h4 {
+	font-size: 1.25em;
+}
+
+h5, h6 {
+	font-size: 1em;
+}
+
+a, a:link, a:visited {
+	color: #11bad3;
+	text-decoration: none;
+	border-bottom: 1px solid #11bad3;
+}
+
+a:hover, a:active {
+	background: #00a9c2;
+	border-color: #00a9c2;
+	color: #fff;
+}
+
+img {
+	max-width: 100%;
+}
+
+hr {
+	border: none;
+	background: url(../images/bg_hr.png) center center no-repeat;
+	height: 10px;
+}
+
+#logo {
+	padding-bottom: 0;
+}
+
+.logo {
+	color: #11bad3;
+	font-family: sommet-slab-1, sommet-slab-2, Georgia, serif;
+	font-weight: normal;
+	font-size: 1.2em;
+}
+.logo b {
+	font-weight: bold;
+}
+
+
+
+.grid {
+	padding: 0 20px;
+}
+
+.row {
+	margin-bottom: 1em;
+}
+
+.feature h2 {
+	font-weight: bold;
+	text-align: center;
+}
+
+.feature p {
+	font-size: 1.125em;
+}
+
+
+a.bttn {
+	border-right: 1px solid #0087a0;
+	border-bottom: 1px solid #0087a0;
+	background: #11bad3;
+	color: #fff;
+	display: inline-block;
+	font-family: sommet-slab-1, sommet-slab-2, Georgia, serif;
+	font-size: 1.2em;
+	font-weight: bold;
+	margin: 0.5em 0;
+	padding: 0.5em 0.75em;
+}
+
+
+.footer p {
+	color: #666;
+	text-align: center;
+	max-width: none;
+}

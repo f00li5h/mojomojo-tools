@@ -1,0 +1,184 @@
+<div class="slot-4-5"><!-- {{{ -->
+	<div class="row" id="about-author">
+		<h3>Author</h3>
+		[% c.subreq( '/inline', { path => '/listof/social' } ); %]
+		<br style="clear:both">
+	</div>
+[%#
+	<div class="row">
+		<iframe href="ad.html" src="" style="height:1.75em;width:100%;border:1pt solid #eee;" scrolling=no></iframe>
+	</div>
+%]
+
+	<div class="row" id="about-cats">
+		<h3>Cats &amp; Kittens</h3>
+		[% c.subreq( '/inline', { path => '/listof/cats' } ); %]
+		<br style="clear:both">
+	</div>
+
+
+	<div class="row" id="about-articles">
+	    <h3>Articles</h3>
+<ul style="
+list-style: none;
+	margin-left: 0;
+	padding-left: 1em;
+	text-indent: -1em;
+">
+[% # lifted from page/subtree.tt and the controller that feeds it
+pp = c.model('DBIC::Page').path_pages( '/blog' );
+series_path_pages= pp.0;
+series_page = series_path_pages.last;
+pages= series_page.descendants;
+FOREACH subpage IN pages;
+	NEXT IF subpage.name == 'blog'; +%]
+        <li style="list-style:disk outside;margin-left:1em;">
+        <a href="[% c.uri_for(subpage.path) %]" title="[% subpage.name_orig %]">[% subpage.name_orig %]</a>
+[%- IF subpage.content.abstract %]
+	<span class="minus"> - </span>
+	<span class="abstract">[%  subpage.content.abstract %]</span>
+[% END -%]
+	<!-- [% subpage.name %] -->
+	[% comments = subpage.comments_rs.count ;
+		IF comments;
+		   ' (' _ comments
+		 	_ ' comment'
+		   	_ (comments == '1' ? '' : 's')
+			_ ') '
+			;
+		END;
+	%] 
+        </li>
+      [% END +%]
+	</ul>
+		<br style="clear:both">
+	</div>
+
+	<div class="row" id="about-comingup">
+	    <h3>Coming up!</h3>
+	    [% c.subreq( '/inline', { path => '/listof/coming-up' } ); %]
+		<br style="clear:both">
+	</div>
+</div><!-- }}} -->
+
+</div>
+</div>
+
+<div id="foot-navigation" class="grid" >
+<div class="row">
+
+<div class="slot-6 popular">
+<h2>Popular</h2> <!-- {{{ -->
+
+[% # lifted from page/subtree.tt and the controller that feeds it
+pp = c.model('DBIC::Page').path_pages( '/blog' );
+series_path_pages= pp.0;
+series_page = series_path_pages.last;
+pages= series_page.descendants;
+subpage_count = 0;
+FOREACH subpage IN pages;
+	NEXT IF subpage.name == 'blog'; 
+	LAST IF subpage_count > 10;
+	subpage_count = subpage_count + 1; +%]
+        <div style="text-indent: [% subpage.depth %]em;">
+        <a href="[% c.uri_for(subpage.path) %]" title="[% subpage.name_orig %]">[% subpage.name_orig %]</a>
+[%- IF subpage.content.abstract %]
+	<span class="minus"> - </span>
+	<span class="abstract">[%  subpage.content.abstract %]</span>
+[% END -%]
+	<!-- [% subpage.name %] -->
+	[% comments = subpage.comments_rs.count ;
+		IF comments;
+		   ' (' _ comments
+		 	_ ' comment'
+		   	_ (comments == '1' ? '' : 's')
+			_ ') '
+			;
+		END;
+	%] 
+        </div>
+      [% END +%]
+
+</div><!-- }}} -->
+<div class="slot-7 categories">
+<h2>Categories</h2><!-- {{{ -->
+
+</div><!-- }}} -->
+<div class="slot-8 series">
+<h2>Series</h2><!-- {{{ -->
+[% # lifted from page/subtree.tt and the controller that feeds it
+pp = c.model('DBIC::Page').path_pages( '/series' );
+series_path_pages= pp.0;
+series_page = series_path_pages.last;
+pages= series_page.descendants;
+FOREACH subpage IN pages;
+	NEXT IF subpage.name == 'series'; +%]
+        <div style="text-indent: [% subpage.depth %]em;">
+        <a href="[% c.uri_for(subpage.path) %]" title="[% subpage.name_orig %]">[% subpage.name_orig %]</a>
+[%- IF subpage.content.abstract %]
+	<span class="minus"> - </span>
+	<span class="abstract">[%  subpage.content.abstract %]</span>
+[% END -%]
+	<!-- [% subpage.name %] -->
+	[% comments = subpage.comments_rs.count ;
+		IF comments;
+		   ' (' _ comments
+		 	_ ' comment'
+		   	_ (comments == '1' ? '' : 's')
+			_ ') '
+			;
+		END;
+	%] 
+        </div>
+      [% END +%]
+ </div><!-- }}} -->
+<div class="slot-9 misc">
+<h2>Other</h2><!-- {{{ -->
+<script src="http://widgets.twimg.com/j/2/widget.js"></script>
+<script>
+new TWTR.Widget({
+  version: 2,
+  type: 'search',
+  search: 'f00li5h.pin21.com',
+  interval: 2000,
+  title: '',
+  subject: '',
+  width: 'auto',
+  height: 300,
+  theme: {
+    shell: {
+      background: '#cccccc',
+      color: '#527bbd'
+    },
+    tweets: {
+      background: '#ffffff',
+      color: '#444444',
+      links: '#0000fa'
+    }
+  },
+  features: {
+    scrollbar: true,
+    loop: false,
+    live: true,
+    hashtags: false,
+    timestamp: true,
+    avatars: true,
+    toptweets: false,
+    behavior: 'default'
+  }
+}).render().start();
+</script>
+<noscript>
+    <p>
+        The twitter widget is made out of javascript, you can see the
+        <a href="http://twitter.com/#search?q=f00li5h.pin21.com">see tweets it would list</a>
+        directly at twitter... (perhaps)
+    </p>
+</noscript>
+
+		<br style="clear:both">
+	</div>
+</div><!-- }}} -->
+
+</div>
+</div>

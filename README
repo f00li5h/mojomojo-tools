@@ -1,0 +1,66 @@
+This is some useful stuff for mojomojo. You might find them useful too.
+
+SUPER USEFUL THINGS ----------------------------------------------------------
+
+mojomojo_cli
+	- this is my super sexy App::Cmd for doing mojomojo stuff
+	- it is half code lifted from misc util scripts in the main mojo repo
+	  and half itch scratching
+
+	- import command is super helpful for loading up:
+		- directories of markdown files
+		- mediawiki xml files
+
+	- I plan on patching in stuff for converting markups using
+	  Text::Markup (that means I'll be loading html)
+
+	- This thing is going to destroy everything in your database, on your 
+	 file system and in your environment. It contains bruit force and 
+	 ignorance, at best.
+
+DEBIAN BITS ------------------------------------------------------------------
+
+The very sensual jawnsy rolled together a debian package.
+What a handy critter jawnsy is!
+
+debian-init-script		
+	- edit it to point to fcgi_manage.pl below 
+	- copy this to this in /etc/init.d 
+	- then symlink it in /etc/rc2.d/S03fcgi_manage.pl
+
+fcgi_manage.pl
+	- this is a tampered wtih mojomojo_fastcgi_manage.pl
+	  (only for the sake of changing conf =>'s path)
+
+	- I feel like hacking this to be more useful and pushing upstream 
+	  is a more helpful idea ... 
+
+mojomojo_fastcgi_manage.yml
+	- the config for fcgi_manage.pl
+
+mojomojo-ngnix-vhost
+	- this is from /etc/nginx/sites-available/
+	- it has the action to go with 
+
+
+SOME OTHER THINGS ------------------------------------------------------------
+
+root/{static,}/themes/somekit
+
+	- the theme for my blogothing!
+
+	- I symlinked crap in /usr/share/perl5/MojoMojo/root/{static,}/themes 
+
+	- it uses SimpleGrid.info 's trickery to be friendly to assorter 
+	  browsing things.
+
+	- logging in gets you a really fucked up view of everything
+	  because I don't care. nobody gets to be logged in but me, damn it.
+
+
+MojoMojo.conf
+
+	- my mojomojo config
+	- i'm thinking of templating it for the sake of lotsa mojomojos
+	- sqlite and indexes in /opt/mojomojo/somekit
+		(this directory needs to be writable by the httpd)

@@ -1,0 +1,48 @@
+[% BLOCK SimpleGrid ;
+IF path_to ;
+	c.uri_for_static('themes/' _ my_theme_dir _ '/SimpleGrid/' _ path_to) ;
+END;
+END %]
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+<link 	rel="stylesheet"
+	href="[% INCLUDE SimpleGrid path_to => "base.css" %]"
+	type="text/css"
+	media="all">
+<link 	rel="stylesheet"
+	href="[% INCLUDE SimpleGrid path_to => "base-custom.css" %]"
+	type="text/css"
+	media="all">
+<!--[if lt IE 9 ]>
+<link	rel="stylesheet"
+	href="[% INCLUDE SimpleGrid path_to => "720_grid.css"%]"
+	type="text/css">
+<![endif]-->
+<link 	rel="stylesheet"
+	href="[% INCLUDE SimpleGrid path_to => "720_grid.css"%]"
+	type="text/css"
+	media="screen and (min-width: 720px)">
+<link 	rel="stylesheet"
+	href="[% INCLUDE SimpleGrid path_to => "986_grid.css"%]"
+	type="text/css"
+	media="screen and (min-width: 986px)">
+<link 	rel="stylesheet"
+	href="[% INCLUDE SimpleGrid path_to => "1236_grid.css"%]"
+	media="screen and (min-width: 1236px)" >
+
+<link 	rel="stylesheet"
+	href="[% INCLUDE SimpleGrid path_to => "720_grid-custom.css"%]"
+	type="text/css"
+	media="screen and (min-width: 720px)">
+<link 	rel="stylesheet"
+	href="[% INCLUDE SimpleGrid path_to => "986_grid-custom.css"%]"
+	type="text/css"
+	media="screen and (min-width: 986px)">
+<link 	rel="stylesheet"
+	href="[% INCLUDE SimpleGrid path_to => "1236_grid-custom.css"%]"
+	media="screen and (min-width: 1236px)" >
+
+<script type="text/javascript" src="http://use.typekit.com/fti4bos.js"></script>
+<script type="text/javascript">try{Typekit.load();}catch(e){}</script>

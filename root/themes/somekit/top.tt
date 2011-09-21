@@ -1,0 +1,13 @@
+<div id="the-top">
+        <div id="navigation-hints">
+        [% c.subreq( '/inline', { path => '/listof/navigation-hints' } ); %]
+        </div>
+        <div id="navigation-items">
+        [% c.subreq( '/inline', { path => '/listof/navigation-items' } ); %]
+        </div>
+        <div id="">
+        [% # c.subreq( '/tags', { path => '/' } ); %]
+        </div>
+</div>
+<br style="clear:both">
+

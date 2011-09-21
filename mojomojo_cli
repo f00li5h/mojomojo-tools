@@ -2,6 +2,9 @@
 
 use lib qw[ lib ];
 
+# this fudgery is here to allow App::Cmd to skip over the plugins of sub-commands
+# i suspect that i can do this by making a sub-command an App::Cmd, 
+# but writing software is haaard
 *App::Cmd::_command  = sub {
   my ($self, $arg) = @_;
   return $self->{command} if ref $self and $self->{command};

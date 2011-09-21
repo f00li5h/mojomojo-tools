@@ -1,0 +1,56 @@
+.banner-wrap {
+	text-align: center;
+	background: #ffc;
+	border-bottom: 1px solid #ccc;
+	padding: 0 10px 1em;
+	margin-bottom: 1em;
+}
+#the-top #navigation-hints { /* float when the center kicks in */
+	float:right;
+}
+
+.banner-wrap .banner h1 a {
+    background-image: url(http://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Black_Paw.svg/40px-Black_Paw.svg.png);
+    background-position:0 50%;
+    background-repeat:no-repeat;
+	padding-left:50px;
+}
+
+span.minus { display:inline;  padding:0;}
+span.abstract {
+	margin: inherit;
+	display:inline;
+
+	color: #444;
+	margin-left:1em; 
+	text-decoration: none; 
+} 
+
+
+/* the columns kick in here too, so we'll align them */
+#foot-navigation .popular                {text-align:right}
+#foot-navigation .categories            {text-align:center}
+#foot-navigation .series                {text-align:center}
+#foot-navigation .misc			{}
+
+
+.intro {
+	font-size: 1.75em;
+	font-family: sommet-slab-1, sommet-slab-2, Georgia, serif;
+	line-height: 1.1em;
+	max-width: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: sommet-slab-1, sommet-slab-2, Georgia, serif;
+	font-weight: normal;
+	line-height: 1.2em;
+	padding: 0.5em 0 0.25em;
+}
+
+.grid {
+	padding: 0 20px;
+}
+
+html { overflow: -moz-scrollbars-vertical; }
+html { overflow-x: auto; }

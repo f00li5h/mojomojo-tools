@@ -1,0 +1,42 @@
+.banner-wrap {
+	background: #ffc;
+	border-bottom: 1px solid #ccc;
+}
+.banner-wrap .banner h1 a {
+    background-image: url(http://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Black_Paw.svg/25px-Black_Paw.svg.png);
+    background-position:0 50%;
+    background-repeat:no-repeat;
+	padding-left:30px;
+}
+
+
+span.minus { display:none; }
+span.abstract {
+	color: #444;
+	display:block;
+	margin-left:1em; 
+	text-decoration: none; 
+}
+
+.intro {
+	line-height: 1em;
+	font-family: sommet-slab-1, sommet-slab-2, Georgia, serif;
+	max-width: none;
+	padding:0;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: sommet-slab-1, sommet-slab-2, Georgia, serif;
+	font-weight: normal;
+	line-height: 1.2em;
+}
+
+li { 
+	margin-right:  0.25em;
+	padding-right: 0.25em;
+	list-style-type: square;
+	list-style-position: inside;
+}
+
+.grid { padding: 0;}

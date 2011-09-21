@@ -1,0 +1,27 @@
+        /*  licence on this css? :O <oksushi> BFO (Beer For oksushi) */
+        ul.elsewhere {
+            font: .7em/1.5em "Lucida Grande","Lucida Sans Unicode", helvetica, verdana, arial, sans-serif; background: #fff;
+        }
+        ul.elsewhere li {display: inline;}
+        ul.elsewhere a {display: inline-block; padding: .5em;
+            background-color: #FFC; /* rgba(255,255,200,.5); */
+            -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;
+            border-color:#000;
+            margin: 0 .5em .5em 0; color: #000; text-decoration: none;
+        }
+        /* */
+
+        ul.elsewhere a.q,
+        ul.elsewhere a.r,
+        ul.elsewhere a.p { padding: 0.25em 2.25em;
+            background-repeat:no-repeat;
+            background-position: 0.4em 50%;
+        }
+        ul.elsewhere a.r {
+            background-image: url("http://forums.mydigitallife.info/images/icons/icon2.png");
+        }
+        ul.elsewhere a.p {
+            background-image: url("http://images.crackberry.com/forum_images/icons/icon5.gif");
+        }
+        ul.elsewhere a.q {background-image: url("http://www.phpbb.com/community/adm/images/icon_edit.gif");
+        }

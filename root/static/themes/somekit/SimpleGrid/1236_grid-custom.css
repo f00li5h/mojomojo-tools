@@ -1,0 +1,12 @@
+.banner-wrap { 
+    background-image: url(http://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Black_Paw.svg/220px-Black_Paw.svg.png);
+    background-repeat:no-repeat;
+    background-position:90% -70%;
+    
+}
+
+.banner-wrap .banner h1 a {
+	background: none;
+	padding:0;
+}
+

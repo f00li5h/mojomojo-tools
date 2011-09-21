@@ -1,0 +1,28 @@
+  <div class="social"
+        title="Tell a friend about '{{{title}}}'">
+    <hr class="endofpost">
+
+    <div class="share">
+        Share the love:
+    </div>
+    <div class="twitter">
+      <script type="text/javascript">
+        tweetmeme_style = 'compact';
+        tweetmeme_source = 'f00li5h';
+        tweetmeme_service = 'bit.ly';
+        tweetmeme_url  = '{{{url}}}/{{{fn}}}.html';
+      </script>
+      <script type="text/javascript" src="http://tweetmeme.com/i/scripts/button.js"></script>
+    </div>
+    <div class="facebook">
+    <iframe src="http://www.facebook.com/plugins/like.php?href={{{url}}}/{{{fn}}}.html&amp;layout=button_count&amp;show_faces=true&amp;width=110&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe>
+    </div>
+<div class="buzz">
+    <a title="Post to Google Buzz" class="google-buzz-button" href="http://www.google.com/buzz/post" data-button-style="small-count" data-url="{{{url}}}/{{{fn}}}.html"></a>
+    <script type="text/javascript" src="http://www.google.com/buzz/api/button.js"></script>
+    </div>
+    <div class="clear"></div>
+  </div>
+
+</div>
+
