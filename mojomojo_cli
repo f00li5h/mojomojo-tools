@@ -1,0 +1,57 @@
+#!  /usr/bin/perl
+
+use lib qw[ lib ];
+
+*App::Cmd::_command  = sub {
+  my ($self, $arg) = @_;
+  return $self->{command} if ref $self and $self->{command};
+
+  # TODO _default_command_base can be wrong if people are not using
+  # ::Setup and have no ::Command :(
+  #
+  #  my $want_isa = $self->_default_command_base;
+  # -- kentnl, 2010-12
+   my $want_isa = 'App::Cmd::Command';
+
+   my @skipped_plugins;
+  my %plugin;
+  for my $plugin ($self->_plugins) {
+    Class::Load::load_class($plugin);
+
+    push @skipped_plugins, $plugin and next 
+      unless $plugin->isa($want_isa);
+
+    next unless $plugin->can("command_names");
+
+    foreach my $command (map { lc } $plugin->command_names) {
+      die "two plugins for command $command: $plugin and $plugin{$command}\n"
+        if exists $plugin{$command};
+
+      $plugin{$command} = $plugin;
+    }
+  }
+
+  # if the module is below a command, perhpas that command is pluggable too?
+  #   App::Pester::Command::loadfoos::PreProcessors::Frobulate is ok, 
+  # because App::Pester::Command::loadfoos is a valid ::Command
+  @skipped_plugins = grep /^@{[ sort keys %plugin ]}::/, @skipped_plugins;
+
+  {local $"=", "; warn "these are not the right kind of plugin: @skipped_plugins"
+	if @skipped_plugins;
+}
+
+  $self->_load_default_plugin($_, $arg, \%plugin) for qw(commands help);
+
+  if ($self->allow_any_unambiguous_abbrev) {
+    # add abbreviations to list of authorized commands
+    my %abbrev = Text::Abbrev::abbrev( keys %plugin );
+    @plugin{ keys %abbrev } = @plugin{ values %abbrev };
+  }
+
+  return \%plugin;
+};
+
+
+use MojoMojo::CLI;
+MojoMojo::CLI->run;
+1
