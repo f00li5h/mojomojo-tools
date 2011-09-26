@@ -3,12 +3,14 @@
 eval 'exec /usr/bin/perl  -S $0 ${1+"$@"}'
     if 0; # not running under some shell
 
+$ENV{MOJOMOJO_CONFIG}=qw[/opt/mojomojo/MojoMojo.conf];
+
+
 =head1 NAME
 
 mojomojo_fastcgi_manage.pl - script to start/stop/restart mojomojo fastcgi instance
 
 =cut
-
 eval { use FCGI::Engine::Manager };
 if ($@) { die "You need to install FCGI::Engine to run this script\n"; }
 

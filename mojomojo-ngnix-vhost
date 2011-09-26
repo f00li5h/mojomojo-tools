@@ -3,13 +3,6 @@ server {
     listen       80;
     server_name  f00li5h.pin21.com;
 
-      location @proxy {
-            proxy_set_header Host $http_host;
-            proxy_set_header X-Forwarded-Host $host;
-            proxy_set_header X-Real-IP $remote_addr;
-            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_pass       http://backendurl;
-      }
 
 
 	# lazy and frustrated
@@ -20,7 +13,7 @@ server {
 
 	# Catalyst requires setting PATH_INFO (instead of SCRIPT_NAME) to $fastcgi_script_name
 	fastcgi_param  PATH_INFO          $fastcgi_script_name;
-	fastcgi_param  SCRIPT_NAME        /;
+	fastcgi_param  SCRIPT_NAME 	'';
 	fastcgi_param  REQUEST_URI        $request_uri;
 	fastcgi_param  DOCUMENT_URI       $document_uri;
 	fastcgi_param  DOCUMENT_ROOT      $document_root;
@@ -42,7 +35,7 @@ server {
     
     rewrite /.static/(.*) /static/$1;
     location / {
-        include fastcgi_params;
-	fastcgi_pass  unix:/tmp/mojomojo.sock;
+        # include fastcgi_params;
+	fastcgi_pass  unix:/opt/mojomojo/somekit//tmp/mojomojo.sock;
     }
 }

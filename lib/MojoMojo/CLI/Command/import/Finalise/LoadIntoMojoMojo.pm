@@ -66,6 +66,7 @@ sub finalise {
 			proto_pages => $proto_pages,
 			creator     => 'c/,,\\',
 
+
 			release_date    => $date,
 			created         => $date,
 			status 		=> 'released'
@@ -94,8 +95,16 @@ sub finalise {
 					epoch => $date_unix || 0
 				);
 			}
+
+			
+			my $page_name = basename($page_path);
+		           $page_name =~ s/-/ /g;
+			   $page_name = join ' ',
+					map { ucfirst }
+					split ' ', $page_name;
+
 			my $user = $rev->{contributor}{username}
-					|| 'c/,,\\';
+					|| $c->app->author ;
 				# id username ip
 				
 			my $content = $rev->{text};
@@ -111,6 +120,7 @@ sub finalise {
 					for @{ $rev->{tags} } ;
 			}
 			$page->update_content(
+				page_orig   => do { (my $copy = $path) =~ s/-/ /g;  $copy },
 				creator 	=> $user,
 				body 		=> $content,
 				precompiled 	=> '',  # MojoMojo will re-compile it
@@ -118,6 +128,9 @@ sub finalise {
 				created         => $date,
 				status 		=> 'released',
 				abstract	=> $comment,
+				name 		=> $page_name
+ 
+					|| basename($page_path),
 			);
 
 		}

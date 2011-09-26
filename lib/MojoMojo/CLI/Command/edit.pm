@@ -5,8 +5,8 @@ use strict; use warnings;
 use Term::Prompt;
 
 use constant {
-	abstract	=> "stuff things into the wiki",
-	description 	=> "stuff things into the wiki using a number of different import modules",
+	abstract	=> "edit a wiki page/revision",
+	description 	=> "spawn your favoured editor and edit the content of a page. can edit the revision in place, or save to a new revision (which is like reverting)",
 };
 sub opt_spec {
 return (

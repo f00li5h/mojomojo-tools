@@ -41,6 +41,9 @@ sub skip_me {
 =cut 
 
 sub load { 
+	# i hear that MediaWiki::DumpFile is a better choice
+	# but everything is tied to the contents being a hash
+	# and i don't care either way 
 
 	my ($self,$c, $opt, $args) = @_;
 
@@ -51,16 +54,14 @@ sub load {
 	my $ditch_old_revs = exists $opt->{'xml_latest'};
 				
 	require XML::Simple;  #lol.
-
 	my $document = XML::Simple->new();
 
 	warn "xml-debug: Reading mediawiki xml from '$filename'" 
 		if $opt->{'xml_debug'};
 
-	die "can't load '$filename'" if not -f $filename;
+	die "can't load '$filename' - it's not a file." if not -f $filename;
 	my $content = do { local (@ARGV,$/)=$filename;<>};
 
-	$content =~ s/<text xml:space="preserve"/<text/g; # fuck you
 
 	my $struct = $document->XMLin( $content, 
 		KeyAttr => { page => '+title'}, #  name key title revision] ],
@@ -68,6 +69,7 @@ sub load {
 		ForceArray => [ qw[ revision page namespace namespaces ] ],
 		SuppressEmpty => '',
 		#ForceArray => 1,
+		NoAttr => 1 # in+out - handy
 		
 	);
 

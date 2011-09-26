@@ -3,7 +3,7 @@ use App::Cmd::Setup -app;
 
 use base qw[ Class::Accessor::Fast ];
 
-__PACKAGE__->mk_accessors(qw[ _schema _conf ]);
+__PACKAGE__->mk_accessors(qw[ _schema _conf _author ]);
 
 sub preview { # {{{
 	my $self = shift ; 
@@ -22,8 +22,24 @@ sub preview { # {{{
 sub author {
 	# who the hell are you?
 	my $self = shift;
-	# should come from preferences or something?
-	$self->schema->resultset('Person')->find({id=>1}); # likelyu to be anon?!
+
+	return $self->_author if $self->_author;
+
+	# if there's an anon user, use him 
+	my $anon = $self->schema->resultset('Preference')->find( { prefkey => 'anonymous_user'} );
+	if (defined $anon) { 
+		$self->_author(
+			$self->schema->resultset('Person')->find( {login => $anon->prefvalue})
+		);
+	}
+	else { 
+		$self->_author(
+			# likelyu to be anon?!
+			$self->schema->resultset('Person')->find({id=>1})
+		);
+	}
+	$self->_author;
+
 }
 
 sub conf {
@@ -37,15 +53,12 @@ sub conf {
 		path => getcwd(),
 		))->get;
 
-	($faked_it,$ENV{MOJOMOJO_CONFIG})=(1,'./MojoMojo.conf'), warn "trying ./MojoMojo.conf",redo
-		if not keys %{$config} and not $faked_it;
+#	($faked_it,$ENV{MOJOMOJO_CONFIG})=(1,'./MojoMojo.conf'), warn "trying ./MojoMojo.conf",redo
+#		if not keys %{$config} and not $faked_it;
 
 
-	die "Couldn't read config file, tried "
-		. getcwd()
-		. ' and found: '
-		. join ", ", $jfdi->found
-			if not keys %{$config} and $faked_it;
+	#die "Couldn't read config file, tried " . getcwd() . ' and found: ' . join ", ", $jfdi->found
+	#if not keys %{$config} and $faked_it;
 
 
 	}

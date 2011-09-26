@@ -6,10 +6,11 @@ use warnings; use strict;
 sub opt_spec { 
 return (
 	['from-directory=s@', 'a stack of plain text' ],
-	['trim-names=s',     'remove this from the start of the name [default is --from-directory+/]' ],
-	['index-name=s',     'the file name to use as the contents' ],
+	['trim-names=s',      'remove this from the start of the name [default is --from-directory+/]' ],
+	['index-name=s',      'the file name to use as the contents' ],
 )
 }
+use constant abstract => "import a directory of text files... no magic except #ABSTRACT:...\\n";
 use Data::Dumper;
 
 sub skip_me {
@@ -25,9 +26,9 @@ sub handle {
 	my ($self, $extension, $content) = @_;
 
 	my %handler_for = (
-		pod => sub { join "\n\n","{{pod}}", @_ , "{{end}}" },
-		html => sub { },
-		pm => sub { warn "skipping it", next },
+		pod 	=> sub { join "\n\n","{{pod}}", @_ , "{{end}}" },
+		html 	=> sub { },
+		pm 	=> sub { warn "skipping it", next },
 	);
 
 	exists $handler_for{ $extension }
@@ -51,8 +52,11 @@ sub load {
 	while (defined(my $path = shift @paths) ) {
 	        print "$path ";
 
-		#NB: catches on fire with spaces in dir names
-		unshift @paths, glob("$path/*") and print ": (recursing)\n" and next if -d $path;
+		if (-d $path) { 
+			opendir my($dh), $path;
+			unshift @paths, map "$path/$_", grep { $_ ne '..' and $_ ne '.' } readdir$dh;
+			print ": (recursing)\n" and next
+		}
 		
 		# find extension, strip prefix...
 		my $extension = '';
@@ -65,14 +69,17 @@ sub load {
 
 		$page_path =~ s{/+}{/}g;
 
-		print "-> $page_path :\n";
+		print "-> $page_path :";
 
 
 		# my $date = DateTime->from_epoch( epoch  =>  10 * 60 * 60 + $started + -M $path );
 
 		my $content = do { local (@ARGV, $/) = $path; <> } || ''; 
 
+		my $abstract; $abstract = $1 if $content =~ s/#ABSTRACT:\s*(.*)//;
 		my $filtered_content = $self->handle( $extension =>  $content );
+
+		print "#ABSTRACT: $abstract" if $abstract;
 		
 		use DateTime;
 		# print preview( do {(my $copy=$content) =~ s/(\s+)/ /g; $copy} , 80) ;
@@ -80,6 +87,7 @@ sub load {
 			title => $page_path,
 			id =>    $page_path,
 			revision => [ {
+					comment => $abstract,
 					contributor => {
 						ip  		=> 'o_O', 
 						username 	=> 'o_O', 
@@ -90,6 +98,7 @@ sub load {
 				} ],
 		};
 		#print "(" . $date->ymd , " at " ,$date->hms,  " Done.\n";
+		print "\n";
 	}
 }
 1
